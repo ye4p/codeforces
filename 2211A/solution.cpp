@@ -42,6 +42,6 @@ int main()
                 subvec.push_back(vec[k]);
                 subvec.push_back(vec[k + 1]);
             }
-        }
+                }
     }
 }
