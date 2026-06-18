@@ -25,6 +25,12 @@ int main()
             {
                 break;
             }
+            // vec[permutation[j] - 1] = 1;
+            // sat++;
+            if ((permutation[j] - 1) == (j + 1))
+            {
+                continue;
+            }
             vec[permutation[j] - 1] = 1;
             sat++;
         }
