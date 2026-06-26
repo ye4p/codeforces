@@ -9,27 +9,15 @@ int main()
     {
         int a, b, c, m;
         std::cin >> a >> b >> c >> m;
-        int alice{};
-        int bob{};
-        int carol{};
-        for (int i = 1; i <= m; i++)
-        {
-            bool is_alice = i % a ? false : true;
-            bool is_bob = i % b ? false : true;
-            bool is_carol = i % c ? false : true;
+        uint64_t alice{};
+        uint64_t bob{};
+        uint64_t carol{};
 
-            int count = is_alice + is_bob + is_carol;
+        int alice_days = m / alice;
+        int alice_bob = alice_days / bob;
+        int alce_carlo = alice_days / carol;
 
-            if (!count)
-                continue;
-
-            if (is_alice)
-                alice += 6 / count;
-            if (is_bob)
-                bob += 6 / count;
-            if (is_carol)
-                carol += 6 / count;
-        }
-        std::cout << alice << " " << bob << " " << carol << "\n";
+        std::cout
+            << alice << " " << bob << " " << carol << "\n";
     }
 }
