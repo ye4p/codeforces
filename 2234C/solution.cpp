@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <numeric>
 
 int main()
 {
@@ -21,23 +22,60 @@ int main()
         std::vector<int> res;
         for (int i = 0; i < hs.size(); i++)
         {
-            int tot{};
-            int r = i;
-            int l = i;
-            int maximum = hs[i];
-            while (++r < hs.size())
-            {
-                tot += std::max(maximum, hs[r - 1]);
-                maximum = std::max(maximum, hs[r]);
+            std::vector<int> intermediate(hs.size(), 0);
+
+            // At first we do pass to the left
+            int index = i-1;
+            int max=0;
+            while (index >= 0) {
+                max = std::max(max, hs[index]);
+                intermediate[index] = max;
+
+                index--;
             }
 
-            maximum = hs[i];
-            while (--l >= 0)
-            {
-                maximum = std::max(maximum, hs[l]);
-                tot += std::max(maximum, hs[l]);
+            // We reached the left bound, now need to wrap and continue iteration until that i value.
+            index = hs.size()-1;
+            while (index > i) {
+                max = std::max(max, hs[index]);
+                intermediate[index]=max;
+
+                index--;
             }
-            res.push_back(tot);
+
+            // std::cout<<"intermediate:\n";
+            // for (int number : intermediate) {
+            //     std::cout<< number << ", ";
+            // }
+            // std::cout<<"\n";
+
+            // Now after we have intermediate values, we need to iterate to the right to finalize them.
+            max = hs[i];
+            index = i + 1;
+            while (index < hs.size()) {
+                if (intermediate[index] > max) intermediate[index]=max;
+                max = std::max(hs[index], max);
+
+                index++;
+            }
+
+            index = 0;
+            while (index < i) {
+                if (intermediate[index] > max) intermediate[index]=max;
+                max = std::max(hs[index], max);
+
+                index++;
+            }
+
+            // std::cout<<"final:\n";
+            // for (int number : intermediate) {
+            //     std::cout<< number << ", ";
+            // }
+            // std::cout<<"\n";
+            
+            int sum = std::accumulate(intermediate.begin(), intermediate.end(), 0);
+            res.push_back(sum);
+
         }
 
         // output
