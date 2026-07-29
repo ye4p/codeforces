@@ -78,6 +78,7 @@ int main()
 
         }
 
+        
         // output
         for (int i : res)
         {
