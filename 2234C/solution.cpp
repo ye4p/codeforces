@@ -10,23 +10,23 @@ int main()
     {
         int num;
         std::cin >> num;
-        std::vector<int> hs;
+        std::vector<long long> hs;
         while (num--)
         {
-            int n;
+            long long n;
             std::cin >> n;
             hs.push_back(n);
         }
 
         //
-        std::vector<int> res;
-        for (int i = 0; i < hs.size(); i++)
+        std::vector<long long> res;
+        for (long long i = 0; i < hs.size(); i++)
         {
-            std::vector<int> intermediate(hs.size(), 0);
+            std::vector<long long> intermediate(hs.size(), 0LL);
 
             // At first we do pass to the left
             int index = i-1;
-            int max=0;
+            long long max=0;
             while (index >= 0) {
                 max = std::max(max, hs[index]);
                 intermediate[index] = max;
@@ -73,14 +73,14 @@ int main()
             // }
             // std::cout<<"\n";
             
-            int sum = std::accumulate(intermediate.begin(), intermediate.end(), 0);
+            long long sum = std::accumulate(intermediate.begin(), intermediate.end(), 0);
             res.push_back(sum);
 
         }
 
         
         // output
-        for (int i : res)
+        for (long long i : res)
         {
             std::cout << i << " ";
         }
