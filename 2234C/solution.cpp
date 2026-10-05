@@ -73,7 +73,7 @@ int main()
             // }
             // std::cout<<"\n";
             
-            long long sum = std::accumulate(intermediate.begin(), intermediate.end(), 0);
+            long long sum = std::accumulate(intermediate.begin(), intermediate.end(), 0ll);
             res.push_back(sum);
 
         }
