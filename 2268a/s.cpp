@@ -19,17 +19,25 @@ int main() {
             vec.push_back(num);
         }
 
-        u64 score = std::accumulate(vec.begin(), vec.end(), 0ULL);
-        
-        u64 ak = vec[k - 1];
-        u64 amk1 = vec[n - k + 1];
-
-        if (ak >= amk1) {
+        u64 score = 0;
+        int count = 0;
+        while (k <= n) {
+            u64 ak = vec[k - 1];
+            u64 amk1 = vec[n - k + count];
             
-        } else {
+            if (ak >= amk1) {
+                score += ak;
+                std::cout<< "added " << ak << ", ";
+
+            } else {
+                score += amk1;
+                std::cout<< "added " << amk1 << ", ";
+            }
+            ++k;
+            ++count;
 
         }
 
-        --n;
+        std::cout << "\n" << score << "\n";
     }
 }
