@@ -23,7 +23,7 @@ int main() {
         int count = 0;
         while (k <= n) {
             u64 ak = vec[k - 1];
-            u64 amk1 = vec[n - k + count];
+            u64 amk1 = vec[n - k];
             
             if (ak >= amk1) {
                 score += ak;
@@ -34,7 +34,6 @@ int main() {
                 std::cout<< "added " << amk1 << ", ";
             }
             ++k;
-            ++count;
 
         }
 
