@@ -40,21 +40,23 @@ int main() {
             }
             u64 amk1 = vec[left];
             while (s.find(amk1) != s.end()) {
-                ++left;
-                if (left >= n) {
+                --left;
+                if (left >= n || left < 0) {
                     oob = true;
                     break;
                 }
                 amk1 = vec[left];
             }
             if (oob) {
-                ans.push_back(score);
                 break;
             }
-            
+
             if (ak >= amk1) {
                 score += ak;
                 // std::cout<< "added " << ak << ", ";
+                if (right <= left) {
+                    ++left;
+                }
                 s.insert(ak);
 
             } else {
