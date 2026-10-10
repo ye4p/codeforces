@@ -30,7 +30,7 @@ int main() {
         while ((right + 1) <= n && left >= 0) {
             u64 ak = vec[right];
             bool oob = false;
-            while (s.find(ak) != s.end()) {
+            while (s.find(right) != s.end()) {
                 ++right;
                 if (right >= n) {
                     oob = true;
@@ -39,7 +39,7 @@ int main() {
                 ak = vec[right];
             }
             u64 amk1 = vec[left];
-            while (s.find(amk1) != s.end()) {
+            while (s.find(left) != s.end()) {
                 --left;
                 if (left >= n || left < 0) {
                     oob = true;
@@ -53,16 +53,16 @@ int main() {
 
             if (ak >= amk1) {
                 score += ak;
-                // std::cout<< "added " << ak << ", ";
+                // std::cout<< "added " << ak << ", \n";
+                s.insert(right);
                 if (right <= left) {
                     ++left;
                 }
-                s.insert(ak);
 
             } else {
                 score += amk1;
-                // std::cout<< "added " << amk1 << ", ";
-                s.insert(amk1);
+                // std::cout<< "added " << amk1 << ", \n";
+                s.insert(left);
                 if (left > right) --right;
             }
             ++right;
